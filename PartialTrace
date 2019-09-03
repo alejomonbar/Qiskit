@@ -1,7 +1,17 @@
 import numpy as np
 from numpy import kron
+def binN(ii,n):
+    return bin(ii)[2:].zfill(n)
 
-def ptrace(self,p,pos):
+def binList(binN):
+    return [int(d) for d in binN]
+
+def listBin(lista):
+    bina = ''
+    for i in lista:
+        bina +=str(i)
+    return bina
+def ptrace(p,pos):
     """
     Based on the work of Mark S. Tame.
     
@@ -39,10 +49,10 @@ def ptrace(self,p,pos):
             for j in range(n-k-1):
                 b = []
                 for ii in range(2**n):
-                    if (int(self.binN(ii,n)[n-1]) + int(self.binN(ii,n)[n-j-2])+1)%2 == 0 and b.count(ii) == 0:
+                    if (int(binN(ii,n)[n-1]) + int(binN(ii,n)[n-j-2])+1)%2 == 0 and b.count(ii) == 0:
                         c = [l for l in range(2**n)]
-                        b.append(int(self.listBin(self.swapPos(self.binList(self.binN(ii,n)),n-1,n-j-2)),2))
-                        perm = self.swapPos(c,ii,int(self.listBin(self.swapPos(self.binList(self.binN(ii,n)),n-1,n-j-2)),2))
+                        b.append(int(listBin(swapPos(binList(binN(ii,n)),n-1,n-j-2)),2))
+                        perm = swapPos(c,ii,int(listBin(swapPos(binList(binN(ii,n)),n-1,n-j-2)),2))
                         M = M[perm,:]
                         M = M[:,perm]
             TrkM = []
